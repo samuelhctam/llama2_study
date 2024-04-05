@@ -1,0 +1,28 @@
+# step 1: load the necessary modules from these libraries.
+import os
+import torch
+from datasets import load_dataset
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BitsAndBytesConfig,
+    TrainingArguments,
+    pipeline,
+    logging,
+)
+from peft import LoraConfig
+from trl import SFTTrainer
+
+# step 2: Model configuration
+# Model Path
+base_model = "/home/mutual/llm_model/llama-7b-chat-f16.bin"
+
+# New instruction dataset
+guanaco_dataset = "mlabonne/guanaco-llama2-1k"
+
+# Fine-tuned model
+new_model = "llama-2-7b-chat-fps"
+
+# step 3: 
+dataset = load_dataset(guanaco_dataset, split="train")
+
